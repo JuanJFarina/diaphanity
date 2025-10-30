@@ -1,11 +1,9 @@
-from pydantic import BaseModel
-
-class AgentPrompt(BaseModel):
-    system_prompt: str
-    user_prompt: str
+class AgentPrompt:
+    def __init__(self, system_prompt: str, user_prompt: str):
+        self.content = f"{system_prompt}\n\n{user_prompt}"
 
     def add_memory(self, messages: str) -> None:
-        pass  # Implementation for adding memory messages
+        self.content += f"\n\nMemory:\n{messages}"
 
     def add_tools(self, tools: str) -> None:
-        pass  # Implementation for adding tool information
+        self.content += f"\n\nTools:\n{tools}"
